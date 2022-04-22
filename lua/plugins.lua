@@ -12,5 +12,12 @@ return require('packer').startup(function()
             'kyazdani42/nvim-web-devicons',
         }
     }
+
+    -- Status and bufferline
+    use {
+        'nvim-lualine/lualine.nvim',
+        'akinsho/bufferline.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
 end)
 

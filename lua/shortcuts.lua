@@ -5,8 +5,8 @@ local map = api.nvim_set_keymap
 vim.g.mapleader = ','
 
 -- Bufferline
-map('n', '<leader>q', ':bprevious<CR>', table_key)
-map('n', '<leader>w', ':bnext<CR>', table_key)
+map('n', '<A-q>', ':bprevious<CR>', table_key)
+map('n', '<A-w>', ':bnext<CR>', table_key)
 
 map('n', '<leader>a', ':BufferLineMoveNext<CR>', table_key)
 map('n', '<leader>s', ':BufferLineMovePrev<CR>', table_key)
@@ -14,7 +14,7 @@ map('n', '<leader>s', ':BufferLineMovePrev<CR>', table_key)
 map('n', '<leader>be', ':BufferLineSortByExtension<CR>', table_key)
 map('n', '<leader>bd', ':BufferLineSortByDirectory<CR>', table_key)
 
-map('n', '<leader>d', ':bd<CR>', table_key)
+map('n', '<A-d>', ':bd<CR>', table_key)
 
 
 -- LuaTREE

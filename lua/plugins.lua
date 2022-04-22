@@ -19,5 +19,8 @@ return require('packer').startup(function()
         'akinsho/bufferline.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
+
+    -- Terminal
+    use 'akinsho/toggleterm.nvim'
 end)
 

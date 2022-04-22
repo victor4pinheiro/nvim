@@ -23,6 +23,7 @@ opt.wrap = false
 opt.shiftround = true
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}
 opt.wildmode = {'list', 'longest'}
+cmd[[colorscheme omni]]
 
 local disabled_built_ins = {
     "netrw",

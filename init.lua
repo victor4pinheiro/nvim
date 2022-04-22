@@ -56,7 +56,7 @@ require('plugins')
 require('shortcuts')
 
 -- Config Plugins
-require('config')
+-- require('config')
 
 -- Languages
 

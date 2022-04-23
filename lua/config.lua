@@ -1,3 +1,5 @@
+require('lsp_servers')
+
 -- File explorer
 
 require'nvim-tree'.setup {}
@@ -5,14 +7,14 @@ require'nvim-tree'.setup {}
 -- Fuzzy file finder
 
 require'telescope'.setup {
-  extensions = {
-    fzf = {
-      fuzzy = true,
-      override_generic_sorter = true,
-      override_file_sorter = true,
-      case_mode = "smart_case"
+    extensions = {
+        fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        case_mode = "smart_case"
+        }
     }
-  }
 }
 
 -- Status and Bufferline

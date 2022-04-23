@@ -5,6 +5,9 @@ return require('packer').startup(function()
     -- Plugin management
     use 'wbthomason/packer.nvim'
 
+    -- Language Server Protocol
+    use 'neovim/nvim-lspconfig'
+
     -- File explorer
     use {
         'kyazdani42/nvim-tree.lua',
@@ -18,6 +21,20 @@ return require('packer').startup(function()
     use {
         'nvim-telescope/telescope.nvim',
         requires = { {'nvim-lua/plenary.nvim'} }
+    }
+
+    --  Completion and snippets
+    use {
+        'onsails/lspkind-nvim',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-cmdline',
+        'hrsh7th/nvim-cmp',
+        'hrsh7th/cmp-calc',
+        'hrsh7th/cmp-nvim-lsp-signature-help',
+        'L3MON4D3/LuaSnip',
+        'saadparwaiz1/cmp_luasnip'
     }
 
     -- Status and bufferline

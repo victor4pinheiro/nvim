@@ -19,15 +19,16 @@ require("lazy").setup({
         tag = '0.1.4',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
     {
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1000,
-        config = function ()
-           vim.cmd.colorscheme 'catppuccin-latte'
+        config = function()
+            vim.cmd.colorscheme 'catppuccin-latte'
         end
     },
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { "nvim-treesitter/nvim-treesitter",          build = ":TSUpdate" },
     { "tpope/vim-fugitive" },
     {
         'VonHeikemen/lsp-zero.nvim',
@@ -35,7 +36,7 @@ require("lazy").setup({
         dependencies = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' }, -- Required
-            {                 -- Optional
+            {                            -- Optional
                 'williamboman/mason.nvim',
                 build = function()
                     pcall(vim.cmd, 'MasonUpdate')
@@ -44,9 +45,9 @@ require("lazy").setup({
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
             -- Autocompletion
-            { 'hrsh7th/nvim-cmp' }, -- Required
+            { 'hrsh7th/nvim-cmp' },     -- Required
             { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'L3MON4D3/LuaSnip' }, -- Required
+            { 'L3MON4D3/LuaSnip' },     -- Required
         }
     },
     { 'simrat39/rust-tools.nvim' },
@@ -55,8 +56,8 @@ require("lazy").setup({
     { 'rcarriga/nvim-dap-ui' },
     {
         'lewis6991/gitsigns.nvim',
-        config = function ()
-           require'gitsigns'.setup()
+        config = function()
+            require 'gitsigns'.setup()
         end
     }
 })

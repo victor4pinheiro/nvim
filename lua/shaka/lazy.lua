@@ -20,11 +20,12 @@ require("lazy").setup({
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
     {
-        'getomni/neovim',
+        "catppuccin/nvim",
+        name = "catppuccin",
         priority = 1000,
-        config = function()
-            vim.cmd.colorscheme 'omni'
-        end,
+        config = function ()
+           vim.cmd.colorscheme 'catppuccin-latte'
+        end
     },
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
     { "tpope/vim-fugitive" },
@@ -51,5 +52,11 @@ require("lazy").setup({
     { 'simrat39/rust-tools.nvim' },
     { 'mfussenegger/nvim-dap' },
     { 'jose-elias-alvarez/typescript.nvim' },
-    { 'rcarriga/nvim-dap-ui' }
+    { 'rcarriga/nvim-dap-ui' },
+    {
+        'lewis6991/gitsigns.nvim',
+        config = function ()
+           require'gitsigns'.setup()
+        end
+    }
 })

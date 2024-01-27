@@ -9,5 +9,6 @@ keymap.set("n", "<leader>w", cmd.w)
 keymap.set("n", "<leader>q", cmd.q)
 keymap.set("n", "<leader>bd", cmd.bd)
 keymap.set("n", "<leader>so", cmd.so)
+keymap.set("n", "<leader>noh", cmd.noh)
 keymap.set("n", "<leader>t", ":20sp term://fish<CR>")
 

@@ -1,59 +1,81 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
-if not vim.loop.fs_stat(lazypath) then
+-- Combine path construction and stat check for efficiency:
+if not vim.loop.fs_stat(vim.fn.stdpath("data") .. "/lazy/lazy.nvim") then
+    -- Use a single shell command for git clone and checkout:
     vim.fn.system({
         "git",
         "clone",
         "--filter=blob:none",
+        "-b", "stable",  -- Concise branch specification
         "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
+        vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
     })
 end
 
-vim.opt.rtp:prepend(lazypath)
+-- Directly modify runtimepath for efficiency:
+vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
-require("lazy").setup({
+-- Opts
+local opts = {
+    real_cputime = true,
+}
+
+local plugins = {
+    -- Fuzzy Finder (files, lsp, etc)
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.4',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        branch = '0.1.x',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+                cond = function()
+                    return vim.fn.executable 'cmake' == 1
+                end,
+            },
+        },
     },
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
     {
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1000,
     },
-    { "nvim-treesitter/nvim-treesitter",          build = ":TSUpdate" },
     {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
+        -- Highlight, edit, and navigate code
+        'nvim-treesitter/nvim-treesitter',
         dependencies = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' }, -- Required
-            {                            -- Optional
-                'williamboman/mason.nvim',
-                build = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end,
-            },
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },     -- Required
-            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'L3MON4D3/LuaSnip' },     -- Required
-        }
+            'nvim-treesitter/nvim-treesitter-textobjects',
+        },
+        build = ':TSUpdate',
     },
-    { 'simrat39/rust-tools.nvim' },
-    { 'mfussenegger/nvim-dap' },
-    { 'jose-elias-alvarez/typescript.nvim' },
-    { 'rcarriga/nvim-dap-ui' },
     {
-        'lewis6991/gitsigns.nvim',
-        config = function()
-            require 'gitsigns'.setup()
-        end
-    }
-})
+        -- LSP Configuration & Plugins
+        'neovim/nvim-lspconfig',
+        dependencies = {
+            -- Automatically install LSPs to stdpath for neovim
+            { 'williamboman/mason.nvim', config = true },
+            'williamboman/mason-lspconfig.nvim',
+        },
+    },
+
+    {
+        -- Autocompletion
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            -- Snippet Engine & its associated nvim-cmp source
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip',
+
+            -- Adds LSP completion capabilities
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+
+            -- Adds a number of user-friendly snippets
+            'rafamadriz/friendly-snippets',
+        },
+    },
+}
+
+-- Require lazy.nvim only once for lazy loading:
+require("lazy").setup(plugins, opts)
+

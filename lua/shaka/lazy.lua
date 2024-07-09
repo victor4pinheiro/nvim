@@ -5,7 +5,7 @@ if not vim.loop.fs_stat(vim.fn.stdpath("data") .. "/lazy/lazy.nvim") then
         "git",
         "clone",
         "--filter=blob:none",
-        "-b", "stable",  -- Concise branch specification
+        "-b", "stable", -- Concise branch specification
         "https://github.com/folke/lazy.nvim.git",
         vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
     })
@@ -20,6 +20,16 @@ local opts = {
 }
 
 local plugins = {
+    -- Neorg
+    {
+        "nvim-neorg/neorg",
+        lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+        version = "*", -- Pin Neorg to the latest stable release
+        dependencies = {
+            { "vhyrro/luarocks.nvim", priority = 1000, config = true },
+            "folke/zen-mode.nvim"
+        },
+    },
     -- Fuzzy Finder (files, lsp, etc)
     {
         'nvim-telescope/telescope.nvim',
@@ -28,7 +38,8 @@ local plugins = {
             'nvim-lua/plenary.nvim',
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
-                build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+                build =
+                'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
                 cond = function()
                     return vim.fn.executable 'cmake' == 1
                 end,
@@ -78,4 +89,3 @@ local plugins = {
 
 -- Require lazy.nvim only once for lazy loading:
 require("lazy").setup(plugins, opts)
-

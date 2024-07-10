@@ -68,8 +68,6 @@ local servers = {
     clangd = {},
     basedpyright = {},
     rust_analyzer = {},
-    tsserver = {},
-
     lua_ls = {
         Lua = {
             workspace = { checkThirdParty = false },

@@ -20,16 +20,6 @@ local opts = {
 }
 
 local plugins = {
-    -- Neorg
-    {
-        "nvim-neorg/neorg",
-        lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-        version = "*", -- Pin Neorg to the latest stable release
-        dependencies = {
-            { "vhyrro/luarocks.nvim", priority = 1000, config = true },
-            "folke/zen-mode.nvim"
-        },
-    },
     -- Fuzzy Finder (files, lsp, etc)
     {
         'nvim-telescope/telescope.nvim',
@@ -75,14 +65,12 @@ local plugins = {
         dependencies = {
             -- Snippet Engine & its associated nvim-cmp source
             'L3MON4D3/LuaSnip',
+            'rafamadriz/friendly-snippets',
             'saadparwaiz1/cmp_luasnip',
 
             -- Adds LSP completion capabilities
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
-
-            -- Adds a number of user-friendly snippets
-            'rafamadriz/friendly-snippets',
         },
     },
 }

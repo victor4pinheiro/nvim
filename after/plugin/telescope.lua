@@ -1,6 +1,20 @@
 local keymap = vim.keymap.set
 
 require('telescope').setup {
+    pickers = {
+        find_files = {
+            find_command = {
+                "rg",
+                "--no-ignore",
+                "--hidden",
+                "--files",
+                "-g",
+                "!**/node_modules/*",
+                "-g",
+                "!**/.git/*",
+            },
+        },
+    },
     defaults = {
         mappings = {
             i = {
@@ -11,7 +25,7 @@ require('telescope').setup {
     },
     extensions = {
         fzf = {
-            fuzzy = true,    -- Enable fuzzy matching for performance
+            fuzzy = true,                   -- Enable fuzzy matching for performance
             override_generic_sorter = true, -- Use fzf's sorting for speed
             override_file_sorter = true,    -- Use fzf's sorting for files
         },

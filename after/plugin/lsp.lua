@@ -66,15 +66,7 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 local servers = {
     clangd = {},
-    basedpyright = {
-        analysis = {
-            typeCheckingMode = "all",
-            autoImportCompletions = true,
-            autoSearchPaths = true,
-            diagnosticMode = "openFilesOnly",
-            useLibraryCodeForTypes = true
-        }
-    },
+    pyright = {},
     rust_analyzer = {},
     lua_ls = {
         Lua = {

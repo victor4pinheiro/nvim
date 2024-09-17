@@ -73,6 +73,7 @@ local plugins = {
             'hrsh7th/cmp-path',
         },
     },
+    { "mistricky/codesnap.nvim", build = "make build_generator" },
 }
 
 -- Require lazy.nvim only once for lazy loading:

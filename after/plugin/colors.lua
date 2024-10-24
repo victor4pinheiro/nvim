@@ -1,5 +1,6 @@
 require("catppuccin").setup({
-    flavour = "latte",
+    flavour = "mocha",
+    transparent_background = true,
     integrations = {
         telescope = {
             enabled = true,

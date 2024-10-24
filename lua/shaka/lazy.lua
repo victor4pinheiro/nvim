@@ -57,14 +57,21 @@ local plugins = {
             { 'williamboman/mason.nvim', config = true },
             'williamboman/mason-lspconfig.nvim',
         },
+
     },
     {
-        'saghen/blink.cmp',
-        lazy = false,
+        -- Autocompletion
+        'hrsh7th/nvim-cmp',
         dependencies = {
+            -- Snippet Engine & its associated nvim-cmp source
+            'L3MON4D3/LuaSnip',
             'rafamadriz/friendly-snippets',
+            'saadparwaiz1/cmp_luasnip',
+
+            -- Adds LSP completion capabilities
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
         },
-        build = 'cargo build --release'
     },
 }
 

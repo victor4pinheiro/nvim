@@ -32,7 +32,7 @@ require('telescope').setup {
     },
 }
 
-pcall(require('telescope').load_extension, 'fzf')
+require('telescope').load_extension('fzf')
 
 --- Function for setting keymaps
 local function set_keymap(mode, lhs, rhs, opts)

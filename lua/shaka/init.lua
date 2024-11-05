@@ -2,27 +2,31 @@
 require("shaka.remap")
 require("shaka.lazy")
 
--- General configs optimized for performance
+-- General configurations optimized for performance
+local opt = vim.opt
 
-vim.opt.guicursor = ""       -- Invisible cursor for speed
-vim.opt.nu = true            -- Show line numbers
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
-vim.opt.wrap = false
-vim.opt.swapfile = false     -- Disable swap files
-vim.opt.backup = false      -- Disable backup files
-vim.opt.hlsearch = false    -- Disable persistent search highlighting
-vim.opt.incsearch = true
-vim.opt.termguicolors = true   -- Disable true colors if not essential
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "no"   -- Hide sign column
-vim.opt.foldcolumn = "0"    -- Hide fold column
-vim.opt.lazyredraw = true   -- Delay redraws
-vim.opt.updatetime = 300    -- Decrease update time
-vim.opt.colorcolumn = "80"
-vim.o.clipboard = 'unnamedplus'
-vim.opt.hidden = true       -- Allow switching buffers without saving
-vim.opt.bufhidden = "wipe"   -- Automatically unload abandoned buffers
+opt.guicursor = ""          -- Hide cursor for speed
+opt.nu = true               -- Show line numbers
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
+opt.smartindent = true
+opt.wrap = false
+opt.swapfile = false        -- Disable swap files
+opt.backup = false          -- Disable backup files
+opt.hlsearch = false        -- Disable persistent search highlighting
+opt.incsearch = true
+opt.termguicolors = true    -- Enable true colors
+opt.scrolloff = 8
+opt.signcolumn = "no"       -- Hide sign column
+opt.foldcolumn = "0"        -- Hide fold column
+opt.lazyredraw = true       -- Delay redraws for performance
+opt.updatetime = 200        -- Further reduce update time
+opt.colorcolumn = "80"
+opt.clipboard = 'unnamedplus'
+opt.hidden = true           -- Allow switching buffers without saving
+opt.bufhidden = "wipe"      -- Unload buffers automatically
+
+-- Additional optimizations
+opt.shortmess:append("c")   -- Shorten messages for speed

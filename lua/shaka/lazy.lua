@@ -73,6 +73,10 @@ local plugins = {
             'hrsh7th/cmp-path',
         },
     },
+    -- lazy.nvim
+    {
+        "GustavEikaas/easy-dotnet.nvim",
+    }
 }
 
 -- Require lazy.nvim only once for lazy loading:

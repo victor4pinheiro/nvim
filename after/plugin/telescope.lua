@@ -6,7 +6,6 @@ require('telescope').setup {
             find_command = {
                 "rg",
                 "--no-ignore",
-                "--hidden",
                 "--files",
                 "-g",
                 "!**/node_modules/*",

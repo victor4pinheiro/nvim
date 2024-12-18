@@ -74,9 +74,6 @@ local plugins = {
         },
     },
     -- lazy.nvim
-    {
-        "GustavEikaas/easy-dotnet.nvim",
-    }
 }
 
 -- Require lazy.nvim only once for lazy loading:

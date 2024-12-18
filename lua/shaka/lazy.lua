@@ -73,7 +73,12 @@ local plugins = {
             'hrsh7th/cmp-path',
         },
     },
-    -- lazy.nvim
+    -- discord
+    {
+        'vyfor/cord.nvim',
+        build = './build || .\\build',
+        event = 'VeryLazy',
+    }
 }
 
 -- Require lazy.nvim only once for lazy loading:

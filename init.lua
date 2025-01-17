@@ -1,1 +1,1 @@
-require("shaka")
+require("config.lazy")

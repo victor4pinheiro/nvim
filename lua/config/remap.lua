@@ -1,8 +1,8 @@
-local g = vim.g
 local cmd = vim.cmd
 local utils = require("utils")
 
-g.mapleader = " "
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 ---- Keymaps using the function
 utils.set_keymap("n", "<leader>so", cmd.so)

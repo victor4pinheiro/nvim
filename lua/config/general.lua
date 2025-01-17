@@ -1,28 +1,28 @@
 -- General configurations optimized for performance
-local opt = vim.opt
+vim.g.have_nerd_font = true
+vim.opt.number = true
+vim.opt.showmode = false
 
-opt.guicursor = ""          -- Hide cursor for speed
-opt.nu = true               -- Show line numbers
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.shiftwidth = 4
-opt.expandtab = true
-opt.smartindent = true
-opt.wrap = false
-opt.swapfile = false        -- Disable swap files
-opt.backup = false          -- Disable backup files
-opt.hlsearch = false        -- Disable persistent search highlighting
-opt.incsearch = true
-opt.termguicolors = true    -- Enable true colors
-opt.scrolloff = 8
-opt.signcolumn = "no"       -- Hide sign column
-opt.foldcolumn = "0"        -- Hide fold column
-opt.lazyredraw = true       -- Delay redraws for performance
-opt.updatetime = 200        -- Further reduce update time
-opt.colorcolumn = "80"
-opt.clipboard = 'unnamedplus'
-opt.hidden = true           -- Allow switching buffers without saving
-opt.bufhidden = "wipe"      -- Unload buffers automatically
+vim.schedule(function()
+	vim.opt.clipboard = "unnamedplus"
+end)
+
+vim.opt.breakindent = true
+vim.opt.undofile = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.signcolumn = "yes"
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.inccommand = "split"
+vim.opt.cursorline = true
+vim.opt.scrolloff = 10
+vim.opt.hlsearch = false
+vim.opt.termguicolors = true
 
 -- Additional optimizations
-opt.shortmess:append("c")   -- Shorten messages for speed
+vim.opt.shortmess:append("c") -- Shorten messages for speed

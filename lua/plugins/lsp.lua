@@ -3,20 +3,20 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			{ "williamboman/mason.nvim", opts = {} },
-			"williamboman/mason-lspconfig.nvim",
-			{ "j-hui/fidget.nvim", opts = {} },
+			{ "mason-org/mason.nvim", opts = {} },
+			"mason-org/mason-lspconfig.nvim",
+			{ "j-hui/fidget.nvim",    opts = {} },
 		},
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
-					utils.set_keymap("n", "gd", ":FzfLua lsp_definitions")
-					utils.set_keymap("n", "gr", ":FzfLua lsp_references")
-					utils.set_keymap("n", "gI", ":FzfLua lsp_implementations")
-					utils.set_keymap("n", "<leader>D", ":FzfLua lsp_type_definitions")
-					utils.set_keymap("n", "<leader>ds", ":FzfLua lsp_document_symbols")
-					utils.set_keymap("n", "<leader>ws", ":FzfLua lsp_dynamic_workspace_symbols")
+					utils.set_keymap("n", "gd", ":FzfLua lsp_definitions<CR>")
+					utils.set_keymap("n", "gr", ":FzfLua lsp_references<CR>")
+					utils.set_keymap("n", "gI", ":FzfLua lsp_implementations<CR>")
+					utils.set_keymap("n", "<leader>D", ":FzfLua lsp_type_definitions<CR>")
+					utils.set_keymap("n", "<leader>ds", ":FzfLua lsp_document_symbols<CR>")
+					utils.set_keymap("n", "<leader>ws", ":FzfLua lsp_dynamic_workspace_symbols<CR>")
 					utils.set_keymap("n", "<leader>rn", vim.lsp.buf.rename)
 					utils.set_keymap("n", "<leader>ca", vim.lsp.buf.code_action)
 					utils.set_keymap("n", "gD", vim.lsp.buf.declaration)
@@ -24,7 +24,8 @@ return {
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
 						local highlight_augroup =
-							vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+						    vim.api.nvim_create_augroup("kickstart-lsp-highlight",
+							    { clear = false })
 						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 							buffer = event.buf,
 							group = highlight_augroup,
@@ -38,17 +39,25 @@ return {
 						})
 
 						vim.api.nvim_create_autocmd("LspDetach", {
-							group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+							group = vim.api.nvim_create_augroup("kickstart-lsp-detach",
+								{ clear = true }),
 							callback = function(event2)
 								vim.lsp.buf.clear_references()
-								vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+								vim.api.nvim_clear_autocmds({
+									group =
+									"kickstart-lsp-highlight",
+									buffer = event2.buf
+								})
 							end,
 						})
 					end
 
 					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
 						utils.set_keymap("n", "<leader>th", function()
-							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({
+								bufnr =
+								    event.buf
+							}))
 						end)
 					end
 				end,
@@ -99,7 +108,8 @@ return {
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities,
+							server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
 					end,
 				},

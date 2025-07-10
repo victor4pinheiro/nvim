@@ -5,15 +5,18 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 ---- Keymaps using the function
+--- Source the file
 utils.set_keymap("n", "<leader>so", cmd.so)
+--- Explorer - netrw
 utils.set_keymap("n", "<leader>po", cmd.Ex)
 utils.set_keymap("n", "<leader>pc", cmd.Rex)
+--- Buffer delete
 utils.set_keymap("n", "<leader>bd", cmd.bd)
+--- Write and quit
 utils.set_keymap("n", "<leader>w", cmd.w)
 utils.set_keymap("n", "<leader>q", cmd.q)
-utils.set_keymap("n", "<leader>so", cmd.so)
+--- Remove highlight
 utils.set_keymap("n", "<leader>noh", cmd.noh)
-utils.set_keymap("n", "<leader>t", ":10sp term://fish<CR>")
 
 ---- Buffers
 -- Creation
@@ -31,6 +34,3 @@ utils.set_keymap("n", "wmh", "<C-W><S-H>")
 utils.set_keymap("n", "wmj", "<C-W><S-J>")
 utils.set_keymap("n", "wmk", "<C-W><S-K>")
 utils.set_keymap("n", "wml", "<C-W><S-L>")
-
--- Terminal
-utils.set_keymap("t", "<Esc>", "<C-\\><C-n>")

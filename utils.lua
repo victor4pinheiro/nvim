@@ -5,4 +5,4 @@ M.set_keymap = function(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
-return M -- Return the module table
+return M

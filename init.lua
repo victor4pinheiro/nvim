@@ -1,5 +1,6 @@
 -- Imports
 require("remap")
+require("manager")
 
 -- Global variables
 local opt = vim.opt
